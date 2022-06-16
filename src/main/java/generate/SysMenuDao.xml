@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.SysMenuDao">
+  <resultMap id="BaseResultMap" type="generate.SysMenu">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="PARAMETER" jdbcType="VARCHAR" property="parameter" />
+    <result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PERSISTENT" jdbcType="BOOLEAN" property="persistent" />
+    <result column="ICON" jdbcType="VARCHAR" property="icon" />
+    <result column="HIDDEN" jdbcType="BOOLEAN" property="hidden" />
+    <result column="STARTUP" jdbcType="BOOLEAN" property="startup" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="ORDER_INDEX" jdbcType="INTEGER" property="orderIndex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, `NAME`, `TYPE`, CONTENT, PARENT_ID, `PARAMETER`, CREATE_BY, CREATE_TIME, UPDATE_BY, 
+    UPDATE_TIME, PERSISTENT, ICON, HIDDEN, STARTUP, `STATUS`, ORDER_INDEX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_menu
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="generate.SysMenu" useGeneratedKeys="true">
+    insert into sys_menu (`NAME`, `TYPE`, CONTENT, 
+      PARENT_ID, `PARAMETER`, CREATE_BY, 
+      CREATE_TIME, UPDATE_BY, UPDATE_TIME, 
+      PERSISTENT, ICON, HIDDEN, 
+      STARTUP, `STATUS`, ORDER_INDEX
+      )
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{parameter,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{persistent,jdbcType=BOOLEAN}, #{icon,jdbcType=VARCHAR}, #{hidden,jdbcType=BOOLEAN}, 
+      #{startup,jdbcType=BOOLEAN}, #{status,jdbcType=INTEGER}, #{orderIndex,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="generate.SysMenu" useGeneratedKeys="true">
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `NAME`,
+      </if>
+      <if test="type != null">
+        `TYPE`,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="parameter != null">
+        `PARAMETER`,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="persistent != null">
+        PERSISTENT,
+      </if>
+      <if test="icon != null">
+        ICON,
+      </if>
+      <if test="hidden != null">
+        HIDDEN,
+      </if>
+      <if test="startup != null">
+        STARTUP,
+      </if>
+      <if test="status != null">
+        `STATUS`,
+      </if>
+      <if test="orderIndex != null">
+        ORDER_INDEX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parameter != null">
+        #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="persistent != null">
+        #{persistent,jdbcType=BOOLEAN},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null">
+        #{hidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="startup != null">
+        #{startup,jdbcType=BOOLEAN},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderIndex != null">
+        #{orderIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.SysMenu">
+    update sys_menu
+    <set>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `TYPE` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parameter != null">
+        `PARAMETER` = #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="persistent != null">
+        PERSISTENT = #{persistent,jdbcType=BOOLEAN},
+      </if>
+      <if test="icon != null">
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null">
+        HIDDEN = #{hidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="startup != null">
+        STARTUP = #{startup,jdbcType=BOOLEAN},
+      </if>
+      <if test="status != null">
+        `STATUS` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderIndex != null">
+        ORDER_INDEX = #{orderIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.SysMenu">
+    update sys_menu
+    set `NAME` = #{name,jdbcType=VARCHAR},
+      `TYPE` = #{type,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      `PARAMETER` = #{parameter,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PERSISTENT = #{persistent,jdbcType=BOOLEAN},
+      ICON = #{icon,jdbcType=VARCHAR},
+      HIDDEN = #{hidden,jdbcType=BOOLEAN},
+      STARTUP = #{startup,jdbcType=BOOLEAN},
+      `STATUS` = #{status,jdbcType=INTEGER},
+      ORDER_INDEX = #{orderIndex,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
